@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.4/phpunit.xsd" colors="true" defaultTestSuite="Encode">
+    <testsuites>
+        <testsuite name="SignupForm">
+            <file>
+                tests/SignupFormTest.php
+            </file>
+        </testsuite>
+        <testsuite name="SignupMail">
+            <file>
+                tests/SignupMailTest.php
+            </file>
+        </testsuite>
+    </testsuites>
+</phpunit>

@@ -1,24 +1,28 @@
 <?php
 
+require_once __DIR__ . '/config.php';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
     if (empty($email) || empty($password)) {
-        die('Email et mot de passe requis');
+        echo ('Email et mot de passe requis');
+        return;
     }
 
-    // Configuration SMTP pour MailHog
-    ini_set('SMTP', 'localhost');
-    ini_set('smtp_port', '1025');
-    ini_set('sendmail_from', 'noreply@test.local');
+    ini_set('SMTP', env('SMTP_HOST'));
+    ini_set('smtp_port', env('SMTP_PORT'));
+    ini_set('sendmail_from', env('SMTP_FROM_EMAIL'));
 
     // Préparation de l'email
     $to = $email;
     $subject = 'Confirmation d\'inscription';
     $message = "Bonjour,\n\nVotre inscription a été effectuée avec succès.\n\nEmail: $email\n\nCordialement,\nL'équipe";
-    $headers = "From: noreply@test.local\r\n" .
-        "Reply-To: noreply@test.local\r\n" .
+    $fromEmail = env('SMTP_FROM_EMAIL');
+    $fromName = env('SMTP_FROM_NAME');
+    $headers = "From: $fromName <$fromEmail>\r\n" .
+        "Reply-To: $fromEmail\r\n" .
         "X-Mailer: PHP/" . phpversion();
 
     // Envoi de l'email

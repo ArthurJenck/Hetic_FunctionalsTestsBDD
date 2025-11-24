@@ -1,0 +1,10 @@
+# Variables d'environnement
+.env
+
+# Dépendances Composer
+/vendor/
+
+# Cache PHPUnit
+.phpunit.cache/
+.phpunit.result.cache
+
